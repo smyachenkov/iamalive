@@ -11,7 +11,7 @@ public class ScheduleTest {
     final String valid = "http://www.yandex.ru";
     final Schedule schedule = new Schedule();
     schedule.addUrl(valid);
-    assertEquals(1, schedule.getUrls().size());
+    assertEquals("valid url must be present in schedule", 1, schedule.getUrls().size());
   }
 
   @Test
@@ -19,7 +19,7 @@ public class ScheduleTest {
     final String invalid = "httpwwwyandexru";
     final Schedule schedule = new Schedule();
     schedule.addUrl(invalid);
-    assertEquals(0, schedule.getUrls().size());
+    assertEquals("invalid url can't be present in schedule", 0, schedule.getUrls().size());
   }
 
   @Test
@@ -28,7 +28,7 @@ public class ScheduleTest {
     final Schedule schedule = new Schedule();
     schedule.addUrl(url);
     schedule.removeUrl(url);
-    assertEquals(0, schedule.getUrls().size());
+    assertEquals("can't remove existing url by name",0, schedule.getUrls().size());
   }
 
   @Test
@@ -36,19 +36,19 @@ public class ScheduleTest {
     final Integer valid = 60;
     final Schedule schedule = new Schedule();
     schedule.setDelay(valid);
-    assertEquals(valid, schedule.getDelay());
+    assertEquals("can't set valid delay", valid, schedule.getDelay());
   }
 
   @Test
   public void ignoresInvalidDelay() {
-    final Integer big = 24 * 60 * 10;
-    final Integer small = 1;
+    final Integer big = Schedule.MAX_DELAY + 1;
+    final Integer small = Schedule.MIN_DELAY - 1;
     final Schedule schedule = new Schedule();
     final Integer before = schedule.getDelay();
     schedule.setDelay(big);
-    assertEquals(before, schedule.getDelay());
+    assertEquals("delay can't be changed to be longer than allowed", before, schedule.getDelay());
     schedule.setDelay(small);
-    assertEquals(before, schedule.getDelay());
+    assertEquals("delay can't be changed to be shorter than allowed", before, schedule.getDelay());
   }
 
 }
