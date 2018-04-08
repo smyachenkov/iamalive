@@ -27,7 +27,7 @@ public class CheckAliveTask implements Runnable {
   public void run() {
     log.info("current delay is " + schedule.getDelay());
     schedule.getUrls().keySet().parallelStream().forEach(
-        url -> schedule.getUrls().putIfAbsent(url, checkStatus(url))
+        url -> schedule.getUrls().put(url, checkStatus(url))
     );
   }
 
