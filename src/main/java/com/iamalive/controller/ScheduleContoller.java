@@ -22,12 +22,21 @@ public class ScheduleContoller {
     this.schedule = schedule;
   }
 
+  /**
+   * Check current status.
+   * @return schedule with list of urls and their status
+   */
   @GetMapping("/status")
   @ResponseBody
   public Schedule status() {
     return schedule;
   }
 
+  /**
+   * Update status check delay.
+   * @param delay seconds
+   * @return schedule with list of urls and their status
+   */
   @GetMapping("/set_delay/{delay}")
   @ResponseBody
   public Schedule setDelay(@PathVariable("delay") Integer delay) {
@@ -35,6 +44,11 @@ public class ScheduleContoller {
     return schedule;
   }
 
+  /**
+   * Add list of urls to current schedule.
+   * @param urls json array of urls
+   * @return schedule with list of urls and their status
+   */
   @PostMapping(value = "/add_url")
   @ResponseBody
   public Schedule addUrl(@RequestBody UrlList urls) {
@@ -42,6 +56,11 @@ public class ScheduleContoller {
     return schedule;
   }
 
+  /**
+   * Remove list of urls from current schedule.
+   * @param urls json array of urls
+   * @return schedule with list of urls and their status
+   */
   @PostMapping(value = "/delete_url")
   @ResponseBody
   public Schedule deleteUrl(@RequestBody UrlList urls) {
