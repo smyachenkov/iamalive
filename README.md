@@ -10,13 +10,14 @@ mvn clean install
 ## How to use:
 
 **/schedule/status**  
+Retrieves current status   
 Request type: GET  
 Params: none  
 Returns: current schedule with list of urls, their status and current delay, for example:
 ```
 {
     "urls": {
-        "http://www.google.ru": "AVAILABLE",
+        "http://www.google.com": "AVAILABLE",
         "http://www.yandex.ru": "AVAILABLE"
     },
     "delay": 5
@@ -25,13 +26,14 @@ Returns: current schedule with list of urls, their status and current delay, for
 
 
 **/schedule/add_url**  
+Adds new url or list of urls to current schedule  
 Request type: POST  
-Params: json body with array of urls, for example: 
+Params: json object with present array of urls, for example: 
 ```
 {
   "urls": [
-    "http://www.yandex.ru",
-    "http://www.google.ru"
+    "http://www.google.com",
+    "http://www.yandex.ru"
   ]
 }
 ```
@@ -39,20 +41,23 @@ Returns: current schedule with list of urls, their status and current delay, for
 ```
 {
     "urls": {
-        "http://www.google.ru": "AVAILABLE",
+        "http://www.google.com": "AVAILABLE",
         "http://www.yandex.ru": "AVAILABLE"
     },
     "delay": 5
 }
 ```
+
+
 **/schedule/delete_url**  
+Removes url or list of urls from current schedule  
 Request type: POST  
-Params: json body with array of urls, for example:   
+Params: json object with present array of urls, for example:   
 ```
 {
   "urls": [
-    "http://www.yandex.ru",
-    "http://www.google.ru"
+    "http://www.google.com",
+    "http://www.yandex.ru"
   ]
 }
 ```
@@ -60,7 +65,7 @@ Returns: current schedule with list of urls, their status and current delay, for
 ```
 {
     "urls": {
-        "http://www.google.ru": "AVAILABLE",
+        "http://www.google.com": "AVAILABLE",
         "http://www.yandex.ru": "AVAILABLE"
     },
     "delay": 5
@@ -68,18 +73,50 @@ Returns: current schedule with list of urls, their status and current delay, for
 ```
 
 
-**/set_delay/{delay}**  
+**/set_delay**  
+Updates refresh delay of current schedule  
 Request type: POST  
-Params: new delay in seconds, for example: /set_delay/60  
+Params: json object with present array of urls, for example:
+```
+{
+    "delay": 5
+}
+```
 Returns: current schedule with list of urls, their status and current delay, for example:  
 ```
 {
     "urls": {
-        "http://www.google.ru": "AVAILABLE",
+        "http://www.google.com": "AVAILABLE",
         "http://www.yandex.ru": "AVAILABLE"
     },
     "delay": 5
 }
 ```
+
+
+**/set_schedule**  
+Replaces current schedule with new  
+Request type: POST  
+Params: Schedule json object with all field present, for example:
+```
+{
+    "urls": {
+        "http://www.google.com",
+        "http://www.yandex.ru"
+    },
+    "delay": 5
+}
+```
+Returns: current schedule with list of urls, their status and current delay, for example:  
+```
+{
+    "urls": {
+        "http://www.google.com": "NOT_CHECKED",
+        "http://www.yandex.ru": "NOT_CHECKED"
+    },
+    "delay": 5
+}
+```
+
 
 
