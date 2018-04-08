@@ -14,12 +14,12 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "/schedule", produces = "application/json")
-public class ScheduleContoller {
+public class ScheduleController {
 
   private Schedule schedule;
 
   @Autowired
-  public ScheduleContoller(Schedule schedule) {
+  public ScheduleController(Schedule schedule) {
     this.schedule = schedule;
   }
 
