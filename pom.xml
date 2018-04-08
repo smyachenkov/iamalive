@@ -9,7 +9,7 @@
 	<packaging>jar</packaging>
 
 	<name>iamalive</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Service for URL availability monitoring </description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -47,6 +47,12 @@
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
 			<version>2.9.5</version>
+		</dependency>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-all</artifactId>
+			<version>1.10.19</version>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
 
@@ -95,6 +101,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
-
 </project>
