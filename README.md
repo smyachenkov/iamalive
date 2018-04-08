@@ -69,7 +69,7 @@ Returns: current schedule with list of urls, their status and current delay, for
 
 
 **/set_delay/{delay}**  
-Request type: GET  
+Request type: POST  
 Params: new delay in seconds, for example: /set_delay/60  
 Returns: current schedule with list of urls, their status and current delay, for example:  
 ```

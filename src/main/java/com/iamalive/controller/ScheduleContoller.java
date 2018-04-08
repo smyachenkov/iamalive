@@ -37,7 +37,7 @@ public class ScheduleContoller {
    * @param delay seconds
    * @return schedule with list of urls and their status
    */
-  @GetMapping("/set_delay/{delay}")
+  @PostMapping("/set_delay/{delay}")
   @ResponseBody
   public Schedule setDelay(@PathVariable("delay") Integer delay) {
     schedule.setDelay(delay);
