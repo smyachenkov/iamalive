@@ -6,8 +6,10 @@ import java.io.Serializable;
 import java.util.List;
 
 @Data
-public class UrlList implements Serializable {
+public class ScheduleDto implements Serializable {
 
-  List<String> urls;
+  private List<String> urls;
+
+  private Integer delay;
 
 }
