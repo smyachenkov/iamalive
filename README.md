@@ -1,7 +1,13 @@
 # iamalive
 Service for URL availability monitoring
 
-How to use:
+## How to build:
+It's a maven project
+```
+mvn clean install
+```
+
+## How to use:
 
 **/schedule/status**  
 Request type: GET  
