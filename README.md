@@ -73,7 +73,7 @@ Returns: current schedule with list of urls, their status and current delay, for
 ```
 
 
-**/set_delay**  
+**/schedule/set_delay**  
 Updates refresh delay of current schedule  
 Request type: POST  
 Params: json object with present array of urls, for example:
@@ -94,7 +94,7 @@ Returns: current schedule with list of urls, their status and current delay, for
 ```
 
 
-**/set_schedule**  
+**/schedule/set_schedule**  
 Replaces current schedule with new  
 Request type: POST  
 Params: Schedule json object with all field present, for example:
