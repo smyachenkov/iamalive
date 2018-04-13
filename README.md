@@ -28,7 +28,7 @@ Returns: current schedule with list of urls, their status and current delay, for
 **/schedule/add_url**  
 Adds new url or list of urls to current schedule  
 Request type: POST  
-Params: json object with present array of urls, for example: 
+Params: json object with present element "urls" - array of urls, for example:   
 ```
 {
   "urls": [
@@ -37,7 +37,7 @@ Params: json object with present array of urls, for example:
   ]
 }
 ```
-Returns: current schedule with list of urls, their status and current delay, for example:
+Params: json object with present element "urls" - array of urls, for example:
 ```
 {
     "urls": {
@@ -52,7 +52,7 @@ Returns: current schedule with list of urls, their status and current delay, for
 **/schedule/delete_url**  
 Removes url or list of urls from current schedule  
 Request type: POST  
-Params: json object with present array of urls, for example:   
+Params: json object with present element "urls" - array of urls, for example:   
 ```
 {
   "urls": [
@@ -76,7 +76,7 @@ Returns: current schedule with list of urls, their status and current delay, for
 **/schedule/set_delay**  
 Updates refresh delay of current schedule  
 Request type: POST  
-Params: json object with present array of urls, for example:
+Params: json object with present element "delay" - value of delay in seconds, for example:
 ```
 {
     "delay": 5
