@@ -10,6 +10,18 @@ import org.junit.Assert.*
 class ScheduleControllerTest {
 
     @Test
+    fun statusReturnsCurrentSchedule() {
+        val schedule = Schedule()
+        val controller = ScheduleController(schedule)
+        assertEquals("status must return current Schedule",
+                schedule, controller.status())
+        schedule.delay = 10
+        assertEquals("status must return current Schedule",
+                schedule.delay, controller.status().delay)
+    }
+
+
+    @Test
     fun setDelayAcceptsNewValue() {
         val schedule = Schedule()
         val controller = ScheduleController(schedule)
