@@ -1,4 +1,7 @@
 [![Build Status](https://travis-ci.org/flslkxtc/iamalive.svg?branch=master)](https://travis-ci.org/flslkxtc/iamalive)
+[![codecov](https://codecov.io/gh/flslkxtc/iamalive/branch/master/graph/badge.svg)](https://codecov.io/gh/flslkxtc/iamalive)
+
+
 
 # iamalive
 Service for URL availability monitoring
