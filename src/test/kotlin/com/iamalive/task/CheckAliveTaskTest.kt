@@ -41,7 +41,7 @@ class CheckAliveTaskTest {
         val schedule = Schedule()
         mockUrlWithCode(schedule, "http://www.google.com", 200)
         mockUrlWithCode(schedule, "http://www.yandex.ru", 404)
-        val task = spy(CheckAliveTask(schedule))
+        val task = CheckAliveTask(schedule)
         task.run()
         schedule.urls.keys.forEach { url ->
             assertNotEquals("Url must be checked after task is complete",
@@ -57,7 +57,7 @@ class CheckAliveTaskTest {
         val unavailable = "http://www.yandex.ru"
         mockUrlWithCode(schedule, available, 200)
         mockUrlWithCode(schedule, unavailable, 404)
-        val task = spy(CheckAliveTask(schedule))
+        val task = CheckAliveTask(schedule)
         task.run()
         assertEquals("available url must be marked with available status",
                 UrlStatusEnum.AVAILABLE, schedule.urls[available])
