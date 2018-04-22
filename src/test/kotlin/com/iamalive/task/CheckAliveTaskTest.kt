@@ -13,6 +13,8 @@ import java.net.URLStreamHandlerFactory
 
 import org.mockito.BDDMockito.*
 import org.junit.Assert.*
+import java.io.IOException
+import java.net.UnknownHostException
 
 class CheckAliveTaskTest {
 
@@ -65,11 +67,45 @@ class CheckAliveTaskTest {
                 UrlStatusEnum.UNAVAILABLE, schedule.urls[unavailable])
     }
 
+    @Test
+    @Throws(Exception::class)
+    fun unknownHostIsMarkedAsUnavailable() {
+        val schedule = Schedule()
+        mockUrlWithException(schedule, "http://www.google.com", UnknownHostException::class.java)
+        val task = CheckAliveTask(schedule)
+        task.run()
+        schedule.urls.keys.forEach { url ->
+            assertEquals("URL must be marked as UNAVAILABLE when encountered UnknownHostException",
+                    UrlStatusEnum.UNAVAILABLE, schedule.urls[url])
+        }
+    }
+
+    @Test
+    @Throws(Exception::class)
+    fun iOExceptionIsMarkedAsUnavailable() {
+        val schedule = Schedule()
+        mockUrlWithException(schedule, "http://www.google.com", IOException::class.java)
+        val task = CheckAliveTask(schedule)
+        task.run()
+        schedule.urls.keys.forEach { url ->
+            assertEquals("URL must be marked as NOT_CHECKED when encountered IOException",
+                    UrlStatusEnum.NOT_CHECKED, schedule.urls[url])
+        }
+    }
+
     @Throws(Exception::class)
     private fun mockUrlWithCode(schedule: Schedule, url: String, code: Int) {
         schedule.addUrl(url)
         val urlConnection = mock(HttpURLConnection::class.java)
         `when`(urlConnection.responseCode).thenReturn(code)
+        httpUrlStreamHandler?.addConnection(URL(url), urlConnection)
+    }
+
+    @Throws(Exception::class)
+    private fun mockUrlWithException(schedule: Schedule, url: String, exception: Class<out Throwable>) {
+        schedule.addUrl(url)
+        val urlConnection = mock(HttpURLConnection::class.java)
+        `when`(urlConnection.responseCode).thenThrow(exception)
         httpUrlStreamHandler?.addConnection(URL(url), urlConnection)
     }
 
